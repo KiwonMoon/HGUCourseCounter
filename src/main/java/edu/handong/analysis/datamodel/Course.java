@@ -21,7 +21,9 @@ public class Course {
 	public Course(String line) {
 		//Course courses = new Course(line);
 		ArrayList<String> lines = new ArrayList<String>();
-		
+		lines.add(0, line);
+		//System.out.println(lines);
+		//System.out.println(lines);
 		//ArrayList<Course> studentId = new ArrayList<Course>();
 		//ArrayList<String> lines = Utils.getLines(line, true);
 		
@@ -49,5 +51,22 @@ public class Course {
 		//semesterCourseTaken = line.split(",")[8].trim();*/
 		
 		}
+	
+	public String getStudetId() {
+		return studentId;
+	}
+	
+	public String getCourseName() {
+		return courseName;
+	}
+	
+	public int getYearTaken() {
+		return yearTaken;
+	}
+	
+	public int getSemesterCourseTaken() {
+		return semesterCourseTaken;
+	}
+	
 	}
 	

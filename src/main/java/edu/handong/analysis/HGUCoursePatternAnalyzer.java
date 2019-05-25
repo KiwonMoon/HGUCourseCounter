@@ -35,7 +35,13 @@ public class HGUCoursePatternAnalyzer {
 		ArrayList<String> lines = Utils.getLines(dataPath, true);
 		
 		students = loadStudentCourseRecords(lines);
-		//System.out.println(students); 
+		
+		
+		//#############
+		/*for(String ele: students.keySet()) {
+			Student stu = students.get(ele);
+		}//############### */
+		//System.out.println(students); //###########
 		
 		// To sort HashMap entries by key values so that we can save the results by student ids in ascending order.
 		Map<String, Student> sortedStudents = new TreeMap<String,Student>(students); 
@@ -57,38 +63,38 @@ public class HGUCoursePatternAnalyzer {
 	 */
 	private HashMap<String,Student> loadStudentCourseRecords(ArrayList<String> lines) {
 		students = new HashMap<String, Student>();//course먼저 만들어서 루프돌면서 student instance 가져오
+		HashMap<String, ArrayList<Student>> keyByCourse = new HashMap<String, ArrayList<Student>>();
+		//ArrayList<Student> takenCourse = new ArrayList<Student>();
 		//Course courses = new Course(lines);
 		
-		/*for (String line: lines) {
-			Course courses = new Course(line);
-			String studentId = line.split(",")[0].trim();
-			Student student = new Student(studentId);
-			students.get(studentId).addCourse(courses);
-			
-		}*/
-		
-		/*for (String line: students.keySet()) {
-			Course courses = new Course(line);
-			//Student student = new Student();
-		}*/
-		
-		/*HashMap<String, Student> students = new HashMap<String, Student>();
-		//students.put(studentId, Student.class); //Student value
-		for(String line: lines) {
-			String studentId = line.split(",")[0].trim();
-			Student student = new Student(studentId);
-			students.put(studentId, student);
-		}*/
 		
 		for (String line: lines) {
-			Course courses = new Course(line);//course먼저만들면 루프문 한번만 돌수 있음  
+			//System.out.println(line);
+			Course courses = new Course(line);//course먼저만들면 루프문 한번만 돌수 있음
+			//Student student = new Student(line);
+			//students.put(String key, Student value);
+			String key = courses.getStudetId();
+			//Student courseName = student.getCourseTaken();
+			
+			if(students.containsKey(key)) {
+				students.get(key).addCourse(courses);
+			} else {
+				//ArrayList<Student> takenCourse = new ArrayList<Student>();
+				Student student = new Student(line);
+				//takenCourse.add(courseName);
+				student.addCourse(courses);
+				students.put(key, student);
+			}
+			
+			
+			/*students.put(courses.getStudetId(), student.getCourseTaken());
+			//System.out.println(students);
+			
 			for (String studentId: students.keySet()) { //keySet이 students의 key값을 어레이로 return
 				if(studentId.equals(line.split(",")[0].trim())) {
 					students.get(studentId).addCourse(courses);
-					//students.get
 				}
-			}
-			
+			}*/
 		}
 		
 		return students; // do not forget to return a proper variable.
@@ -110,24 +116,39 @@ public class HGUCoursePatternAnalyzer {
 	 * @return
 	 */
 	private ArrayList<String> countNumberOfCoursesTakenInEachSemester(Map<String, Student> sortedStudents) {
-		
+		//Map<String, Student> sortedStudents = new TreeMap<String,Student>(students); 
+		//ArrayList<String> linesToBeSaved = countNumberOfCoursesTakenInEachSemester(sortedStudents);
 		ArrayList<String> numberOfCoursesTakenInEachSemester = new ArrayList<String>();
 		int totalSemester = 0;
 		
-		for(int i = 1; i < sortedStudents.size(); i++) {
-			Student studentCheck = sortedStudents.get(Integer.toString(i));
+		for(String line: sortedStudents.keySet()) {
+			Student stu = new Student(line);
+			stu.getSemestersByYearAndSemester();
+			numberOfCoursesTakenInEachSemester.add(line);
+		}
+		
+		
+		/*
+		for(int i = 1; i <= sortedStudents.size(); i++) {
 			
-			//String studentId = sortedStudents.toString();
-			//String studentId = 
+			//Student studentCheck = sortedStudents.get(Integer.toString(i));
+			//System.out.println(studentCheck.getStudentId());
+			
+			System.out.println(studentCheck.getSemestersByYearAndSemester().size());
+			totalSemester = studentCheck.getSemestersByYearAndSemester().size();
+		}
+		
+		for(int i = 1; i < sortedStudents.size(); i++) {
+			Student studentCheck = sortedStudents.get(Integer.toString(i)); //for print studentID
 			String studentId = studentCheck.getStudentId();
 			System.out.println(studentId);
-			totalSemester = studentCheck.getSemestersByYearAndSemester().size();
+			totalSemester = studentCheck.getSemestersByYearAndSemester().size(); //
 			
 			for(int j = 1; j < studentCheck.getSemestersByYearAndSemester().size(); j++) {
 				int numOfCoursesInNthSemester = studentCheck.getNumCourseInNthSementer(j);
 				String lineResult = studentId + "," + totalSemester + "," + j + "," + numOfCoursesInNthSemester;
 			}
-		}
+		}*/
 		
 		return numberOfCoursesTakenInEachSemester; // do not forget to return a proper variable.
 	}

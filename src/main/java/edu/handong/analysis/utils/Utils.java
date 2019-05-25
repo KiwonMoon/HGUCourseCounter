@@ -43,7 +43,7 @@ public class Utils {
 		if(removeHeader)
 			lines.remove(0);
 		
-		
+		//System.out.println(lines);
 		//____________2
 		
 		/*try {
@@ -68,13 +68,12 @@ public class Utils {
 		//_______________end
 		
 		
-		String listString = "";
+		/*String listString = "";
 		
 		for(String s: lines) {
-			listString += s + "\t";
-		}
-		Course myCourses = new Course(listString);
-		
+			listString += s + "\n";
+		}*/
+		//Course myCourses = new Course(listString);
 		
 		return lines;
 	}
