@@ -51,16 +51,18 @@ public class Student { //학생객체로 학생이름이 아닌 학번으로 처
 		//ArrayList<Course> courseInfo = new ArrayList<Course>();
 		//Course courseInfos = new Course(coursesTaken.get(0).getCourseName());
 		//Course yearTakens = new Course(Integer.toString(coursesTaken.get(0)));
-		//Course courseInfo = new Course(coursesTaken.get(0).toString());
+		//Course courseInfos = new Course(coursesTaken.get(0).toString());
+		//String key = Integer.toString(courseInfos.getYearTaken()) + "-" + Integer.toString(courseInfos.getSemesterCourseTaken());
+		
 		
 		for(int i=0; i < coursesTaken.size(); i++) {
 			Course courseInfo = new Course(coursesTaken.get(i).toString());
 			Course yearTaken = new Course(Integer.toString(coursesTaken.get(i).getYearTaken()));
 			Course semTaken = new Course(Integer.toString(coursesTaken.get(i).getSemesterCourseTaken()));
 			
-			String key = Integer.toString(courseInfo.getYearTaken()) + "-" + Integer.toString(courseInfo.getSemesterCourseTaken());
+			String keyString = Integer.toString(courseInfo.getYearTaken()) + "-" + Integer.toString(courseInfo.getSemesterCourseTaken());
 			
-			semestersByYearAndSemester.put(key, i+1);
+			semestersByYearAndSemester.put(keyString, i+1);
 			
 			
 		}
