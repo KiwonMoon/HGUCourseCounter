@@ -9,6 +9,8 @@ import java.io.FileFilter;
 import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;//
 import java.io.DataOutputStream;
@@ -47,19 +49,26 @@ public class Utils {
 	}
 	
 	public static void writeAFile(ArrayList<String> lines, String targetFileName) {
+		
 		try {
-			File file = new File(targetFileName);
+			File file = new File("/Users/moonkiwon/Desktop/result.csv");
 			FileOutputStream fos = new FileOutputStream(file);
 			DataOutputStream dos = new DataOutputStream(fos);
 			
 			for(String line: lines) {
 				dos.write((line+",").getBytes());
+				
+				if(!file.exists()) {
+					file.getParentFile().mkdirs();
+				}
 			}
 			dos.close();
 			fos.close();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		//Path file = Paths.get("/Users/moonkiwon/Desktop/result.csv");
+		//if(file.getParent() == null)
 	}
 
 }
