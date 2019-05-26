@@ -37,49 +37,29 @@ public class Utils {
 			}
 			br.close();
 		} catch (IOException e) {
-			System.err.println("ErrorMessage----------");
+			System.err.println("The file path does not exist. Please check your CLI argument!");
 		}
 		
 		if(removeHeader)
 			lines.remove(0);
 		
-		//System.out.println(lines);
-		//____________2
-		
-		/*try {
-			Scanner inputStream = new Scanner(new File(file));
-			String line = inputStream.toString();
-			
-			while(inputStream.hasNextLine()) {
-				line = inputStream.nextLine();
-				
-				//String[] ary = line.split(",");
-				
-			}
-			inputStream.close();
-			
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			//e.printStackTrace();
-			System.out.println("ErrorMessage----------");
-		}
-		if(removeHeader)
-			lines.remove(0);*/
-		//_______________end
-		
-		
-		/*String listString = "";
-		
-		for(String s: lines) {
-			listString += s + "\n";
-		}*/
-		//Course myCourses = new Course(listString);
-		
 		return lines;
 	}
 	
 	public static void writeAFile(ArrayList<String> lines, String targetFileName) {
-		
+		try {
+			File file = new File(targetFileName);
+			FileOutputStream fos = new FileOutputStream(file);
+			DataOutputStream dos = new DataOutputStream(fos);
+			
+			for(String line: lines) {
+				dos.write((line+",").getBytes());
+			}
+			dos.close();
+			fos.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 }

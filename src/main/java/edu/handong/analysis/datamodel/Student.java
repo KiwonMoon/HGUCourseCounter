@@ -46,6 +46,8 @@ public class Student { //학생객체로 학생이름이 아닌 학번으로 처
 	 * 2002-2가 키로 들어가면 인테져는 2
 	 * 2003-2의 인테져값은 3*/
 	public HashMap<String,Integer> getSemestersByYearAndSemester() {
+		
+		/*
 		semestersByYearAndSemester = new HashMap<String, Integer>();
 		Integer seq = 1;
 		//ArrayList<Course> courseInfo = new ArrayList<Course>();
@@ -57,46 +59,22 @@ public class Student { //학생객체로 학생이름이 아닌 학번으로 처
 		
 		for(int i=0; i < coursesTaken.size(); i++) {
 			Course courseInfo = new Course(coursesTaken.get(i).toString());
-			Course yearTaken = new Course(Integer.toString(coursesTaken.get(i).getYearTaken()));
-			Course semTaken = new Course(Integer.toString(coursesTaken.get(i).getSemesterCourseTaken()));
+			//Course yearTaken = new Course(Integer.toString(coursesTaken.get(i).getYearTaken()));
+			//Course semTaken = new Course(Integer.toString(coursesTaken.get(i).getSemesterCourseTaken()));
 			
 			String keyString = Integer.toString(courseInfo.getYearTaken()) + "-" + Integer.toString(courseInfo.getSemesterCourseTaken());
+			
+			for(String sequenceSem: semestersByYearAndSemester.keySet()) {
+				if(semestersByYearAndSemester.containsKey(keyString)) {
+					semestersByYearAndSemester.get(sequenceSem);
+				}
+			}
 			
 			semestersByYearAndSemester.put(keyString, i+1);
 			
 			
-		}
-			
-		/*for(Course line: coursesTaken) {
-			
-			int year = line.getYearTaken();
-			int semester = line.getSemesterCourseTaken();
+		}*/
 
-			String stringYear = Integer.toString(year);
-			String stringSemester = Integer.toString(semester);
-			String key = stringYear + "-" + stringSemester;
-			Integer sequence = 1;
-			
-			if(semestersByYearAndSemester.containsKey(key)) {
-				semestersByYearAndSemester.get(key).intValue();
-			} else {
-				sequence = sequence + 1;
-				semestersByYearAndSemester.put(key, sequence);
-			}
-			
-			for(String linel: semestersByYearAndSemester.keySet()) {
-				System.out.println(key);
-			}
-			
-			/*Integer semesterSequence = 1;
-			for(semesterSequence = 1; semesterSequence > studentId.length(); semesterSequence++) {
-				
-				semestersByYearAndSemester.put(key, semesterSequence);
-			}
-			semestersByYearAndSemester.put(key, semesterSequence);*/
-			
-		//}
-		
 		return semestersByYearAndSemester;
 	}
 	

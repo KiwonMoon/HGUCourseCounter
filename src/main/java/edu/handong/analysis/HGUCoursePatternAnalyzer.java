@@ -69,32 +69,17 @@ public class HGUCoursePatternAnalyzer {
 		
 		
 		for (String line: lines) {
-			//System.out.println(line);
-			Course courses = new Course(line);//course먼저만들면 루프문 한번만 돌수 있음
-			//Student student = new Student(line);
-			//students.put(String key, Student value);
+			Course courses = new Course(line);
 			String key = courses.getStudetId();
-			//Student courseName = student.getCourseTaken();
 			
 			if(students.containsKey(key)) {
 				students.get(key).addCourse(courses);
 			} else {
-				//ArrayList<Student> takenCourse = new ArrayList<Student>();
 				Student student = new Student(line);
-				//takenCourse.add(courseName);
 				student.addCourse(courses);
 				students.put(key, student);
 			}
 			
-			
-			/*students.put(courses.getStudetId(), student.getCourseTaken());
-			//System.out.println(students);
-			
-			for (String studentId: students.keySet()) { //keySet이 students의 key값을 어레이로 return
-				if(studentId.equals(line.split(",")[0].trim())) {
-					students.get(studentId).addCourse(courses);
-				}
-			}*/
 		}
 		
 		return students; // do not forget to return a proper variable.
