@@ -56,7 +56,7 @@ public class Utils {
 			DataOutputStream dos = new DataOutputStream(fos);
 			
 			for(String line: lines) {
-				dos.write((line+",").getBytes());
+				dos.write((line+"\n").getBytes());
 				
 				if(!file.exists()) {
 					file.getParentFile().mkdirs();
