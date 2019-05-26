@@ -56,11 +56,10 @@ public class HGUCoursePatternAnalyzer {
 	 */
 	private HashMap<String,Student> loadStudentCourseRecords(ArrayList<String> lines) {
 		students = new HashMap<String, Student>();//course먼저 만들어서 루프돌면서 student instance 가져오
-		HashMap<String, ArrayList<Student>> keyByCourse = new HashMap<String, ArrayList<Student>>();
+		//HashMap<String, ArrayList<Student>> keyByCourse = new HashMap<String, ArrayList<Student>>();
 		//ArrayList<Student> takenCourse = new ArrayList<Student>();
 		//Course courses = new Course(lines);
-		
-		
+	
 		for (String line: lines) {
 			Course courses = new Course(line);
 			String key = courses.getStudetId();
@@ -72,9 +71,7 @@ public class HGUCoursePatternAnalyzer {
 				student.addCourse(courses);
 				students.put(key, student);
 			}
-			
 		}
-		
 		return students; // do not forget to return a proper variable.
 	}
 
@@ -94,16 +91,21 @@ public class HGUCoursePatternAnalyzer {
 	 * @return
 	 */
 	private ArrayList<String> countNumberOfCoursesTakenInEachSemester(Map<String, Student> sortedStudents) {
-		//Map<String, Student> sortedStudents = new TreeMap<String,Student>(students); 
-		//ArrayList<String> linesToBeSaved = countNumberOfCoursesTakenInEachSemester(sortedStudents);
 		ArrayList<String> numberOfCoursesTakenInEachSemester = new ArrayList<String>();
 		int totalSemester = 0;
 		numberOfCoursesTakenInEachSemester.add("Student Id, TotalNumberOfSemestersRegistered, Semester, NumCoursesTakenInTheSemester");
 		for(String line: sortedStudents.keySet()) {
 			Student stu = new Student(line);
-			stu = sortedStudents.get(line);
+			//stu = sortedStudents.get(line);
 			numberOfCoursesTakenInEachSemester.add(line);
+			stu.getSemestersByYearAndSemester().get(line);
+			//totalSemester++;
+			//numberOfCoursesTakenInEachSemester.add(Integer.toString(totalSemester));
+			//numberOfCoursesTakenInEachSemester.add(",");
+			//numberOfCoursesTakenInEachSemester.add(stu.getSemestersByYearAndSemester().keySet().toString());
+			//numberOfCoursesTakenInEachSemester.add(stu.getSemestersByYearAndSemester().get(line).toString());
 		}
+		//System.out.println(numberOfCoursesTakenInEachSemester);
 		
 		//numberOfCoursesTakenInEachSemester.add(0, sortedStudents.get(line));
 		
