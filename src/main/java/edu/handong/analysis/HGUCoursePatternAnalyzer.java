@@ -115,24 +115,5 @@ public class HGUCoursePatternAnalyzer {
 		}
 		
 		return numOfCoursesTakenInEachSemester;
-		//System.out.println(sortedStudents.toString());
-		
-		
-		
-		/*for(int i = 1; i < sortedStudents.size(); i++) {
-			Student studentCheck = sortedStudents.get(Integer.toString(i)); //for print studentID
-			String studentId = studentCheck.getStudent();
-			//System.out.println(studentId);
-			totalSemester = studentCheck.getSemestersByYearAndSemester().size(); //
-			//System.out.println(totalSemester);
-			
-			for(int j = 1; j < studentCheck.getSemestersByYearAndSemester().size(); j++) {
-				int numOfCoursesInNthSemester = studentCheck.getNumCourseInNthSementer(j);
-				String lineResult = studentId + "," + totalSemester + "," + j + "," + numOfCoursesInNthSemester;
-				numberOfCoursesTakenInEachSemester.add(lineResult);
-			}
-		}
-		
-		return numberOfCoursesTakenInEachSemester; // do not forget to return a proper variable.*/
 	}
 }

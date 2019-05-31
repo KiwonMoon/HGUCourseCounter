@@ -68,25 +68,6 @@ public class Student { //학생객체로 학생이름이 아닌 학번으로 처
 				//System.out.println(yearAndSememester+count);
 			}
 		}
-		
-		/*for(Course line: data) {
-			String studentsId = line.getStudentId();
-			String yearAndSem = "" + line.getYearTaken() + "-" + line.getSemesterCourseTaken();
-			if(hashMap.containsKey(studentsId)) {
-				hashMap.get(studentsId).add(yearAndSem);
-			} else {
-				ArrayList<String> yearsAndSems = new ArrayList<String>();
-				yearsAndSems.add(yearAndSem);
-				hashMap.put(studentsId, yearsAndSems);
-			}//key: studentID, value: years and semesters 인 hashMap
-			
-			/*for(int i = 0; i < hashMap.size(); i++) {
-				semestersByYearAndSemester.put(yearAndSem, i);
-			}
-		}
-		for(int i =0; i < hashMap.size(); i++) {
-			semestersByYearAndSemester.put(hashMap.get().get(i), i);
-		}*/
 
 		return semestersByYearAndSemester;
 	}
