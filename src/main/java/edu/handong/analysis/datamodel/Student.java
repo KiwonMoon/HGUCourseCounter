@@ -3,6 +3,7 @@ package edu.handong.analysis.datamodel;
 import edu.handong.analysis.datamodel.Course;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 public class Student { //학생객체로 학생이름이 아닌 학번으로 처리
 	private String studentId; //constructor
@@ -12,28 +13,30 @@ public class Student { //학생객체로 학생이름이 아닌 학번으로 처
 	// constructor
 	public Student(String studentId) {
 		this.studentId = studentId;
+		this.coursesTaken = new ArrayList<Course>();
+		this.semestersByYearAndSemester = new HashMap<String, Integer>();
 	}
 	
 	/*line을 읽으면서 생성된 Course instance를 
 	 * Student instance에 있는 coursesTaken ArrayList에 추가하는 method*/
 	public void addCourse(Course newRecord) {
 		//coursesTaken.add(newRecord.getCourseName());
-		int count = 0;
-		
+		coursesTaken.add(newRecord);
+		/*int count = 0;
 		for(count=0; count < newRecord.getCourseName().length(); count++) {
-			coursesTaken = new ArrayList<Course>();
+			//coursesTaken = new ArrayList<Course>();
 			coursesTaken.add(newRecord);
-		}
+		}*/
 	}
 	
 	public Student getCourseTaken() {
 		//String string;
-		System.out.println(coursesTaken);
+		//System.out.println(coursesTaken);
 		Student instance = new Student(coursesTaken.toString());
 		return instance;
 	}
 	
-	public String getStudentId() {
+	public String getStudent() {
 		return studentId;
 	}
 	
@@ -42,30 +45,67 @@ public class Student { //학생객체로 학생이름이 아닌 학번으로 처
 	/* 이게 몇번째 학기인지 정보를 가지고 있는 해쉬맵
 	 * 이 해쉬맵에 2002-1을 집어넣으면 학생1인 경우에 1이라는 값이 이 해쉬맵 안의 interger로 들어감
 	 * 2002-2가 키로 들어가면 인테져는 2
-	 * 2003-2의 인테져값은 3*/
+	 * 2003-2의 인테져값은 3
+	 * Id를 키값으로 뽑아서 */
 	public HashMap<String,Integer> getSemestersByYearAndSemester() {
+		//semestersByYearAndSemester = new HashMap<String, Integer>();
+		//ArrayList<Course> courseInfos = new ArrayList<Course>();
+		//Map<String, ArrayList<String>> hashMap = new HashMap<String, ArrayList<String>>(); //key: stu.id value: 2002-1,2002-2,...
+		//Course courseInfo = new Course(studentId);
 		
-		semestersByYearAndSemester = new HashMap<String, Integer>();
-		//Integer seq = 1;
-		ArrayList<Course> courseInfos = new ArrayList<Course>();
+		int count = 0;
+		String year = "";
+		String semester = "";
 		
-		for(String string: semestersByYearAndSemester.keySet() ) {
-			Course courseInfo = new Course(string);
-			courseInfo = new Course(courseInfo.getStudetId());
-			String key = Integer.toString(courseInfo.getYearTaken()) + "-" + Integer.toString(courseInfo.getSemesterCourseTaken());
+		for(Course line: coursesTaken) {
+			year = Integer.toString(line.getYearTaken());
+			semester = Integer.toString(line.getSemesterCourseTaken());
+			String yearAndSememester = year + "-" + semester;
 			
-			for(int i=1; i < courseInfo.getStudetId().length(); i++) {
-				semestersByYearAndSemester.put(key, i);
+			if(!semestersByYearAndSemester.containsKey(yearAndSememester)) {
+				count++;
+				semestersByYearAndSemester.put(yearAndSememester, count);
+				//System.out.println(yearAndSememester+count);
 			}
 		}
+		
+		/*for(Course line: data) {
+			String studentsId = line.getStudentId();
+			String yearAndSem = "" + line.getYearTaken() + "-" + line.getSemesterCourseTaken();
+			if(hashMap.containsKey(studentsId)) {
+				hashMap.get(studentsId).add(yearAndSem);
+			} else {
+				ArrayList<String> yearsAndSems = new ArrayList<String>();
+				yearsAndSems.add(yearAndSem);
+				hashMap.put(studentsId, yearsAndSems);
+			}//key: studentID, value: years and semesters 인 hashMap
+			
+			/*for(int i = 0; i < hashMap.size(); i++) {
+				semestersByYearAndSemester.put(yearAndSem, i);
+			}
+		}
+		for(int i =0; i < hashMap.size(); i++) {
+			semestersByYearAndSemester.put(hashMap.get().get(i), i);
+		}*/
 
 		return semestersByYearAndSemester;
 	}
 	
 	
 	public int getNumCourseInNthSementer(int semester) {
-		
-		return semester;
+		int counts = 0;
+		String years = "";
+		String semesters = "";
+		for(Course lines: coursesTaken) {
+			years = Integer.toString(lines.getYearTaken());
+			semesters = Integer.toString(lines.getSemesterCourseTaken());
+			String yearsAndSemesters = years + "-" + semesters;
+			if(semestersByYearAndSemester.get(yearsAndSemesters)==semester) {
+				counts++;
+				//System.out.println("year:" + yearsAndSemesters + "count" + counts);
+			}
+		}
+		return counts;
 	}
 
 }

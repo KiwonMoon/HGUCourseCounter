@@ -36,7 +36,7 @@ public class Course {
 		
 		}
 	
-	public String getStudetId() {
+	public String getStudentId() {
 		return studentId;
 	}
 	
@@ -44,6 +44,12 @@ public class Course {
 		return courseName;
 	}
 	
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return super.toString();
+	}
+
 	public int getYearTaken() {
 		return yearTaken;
 	}

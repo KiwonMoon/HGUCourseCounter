@@ -62,7 +62,10 @@ public class HGUCoursePatternAnalyzer {
 	
 		for (String line: lines) {
 			Course courses = new Course(line);
-			String key = courses.getStudetId();
+			String key = courses.getStudentId();
+			//Student student = new Student(line);
+			//student.addCourse(courses);
+			//students.put(key, student);
 			
 			if(students.containsKey(key)) {
 				students.get(key).addCourse(courses);
@@ -91,46 +94,45 @@ public class HGUCoursePatternAnalyzer {
 	 * @return
 	 */
 	private ArrayList<String> countNumberOfCoursesTakenInEachSemester(Map<String, Student> sortedStudents) {
-		ArrayList<String> numberOfCoursesTakenInEachSemester = new ArrayList<String>();
-		int totalSemester = 0;
-		numberOfCoursesTakenInEachSemester.add("Student Id, TotalNumberOfSemestersRegistered, Semester, NumCoursesTakenInTheSemester");
-		for(String line: sortedStudents.keySet()) {
-			Student stu = new Student(line);
-			//stu = sortedStudents.get(line);
-			numberOfCoursesTakenInEachSemester.add(line);
-			stu.getSemestersByYearAndSemester().get(line);
-			//totalSemester++;
-			//numberOfCoursesTakenInEachSemester.add(Integer.toString(totalSemester));
-			//numberOfCoursesTakenInEachSemester.add(",");
-			//numberOfCoursesTakenInEachSemester.add(stu.getSemestersByYearAndSemester().keySet().toString());
-			//numberOfCoursesTakenInEachSemester.add(stu.getSemestersByYearAndSemester().get(line).toString());
-		}
-		//System.out.println(numberOfCoursesTakenInEachSemester);
-		
-		//numberOfCoursesTakenInEachSemester.add(0, sortedStudents.get(line));
-		
-		/*
-		for(int i = 1; i <= sortedStudents.size(); i++) {
+		ArrayList<String> numOfCoursesTakenInEachSemester = new ArrayList<String>();
+		int totalCourse = 0;
+		int seqOfSem=0;
+		numOfCoursesTakenInEachSemester.add("studentID"  + "," + "TotalNumberOfSemestersRegistered" + "," + "Semester" + "," + "NumCoursesTakenInTheSemester");
+		for(String lineString: sortedStudents.keySet()) {
+			int count=0;
+			Student studentKey = sortedStudents.get(lineString);
+			Map<String, Integer> totalSem = new TreeMap<String, Integer>(studentKey.getSemestersByYearAndSemester());
 			
-			//Student studentCheck = sortedStudents.get(Integer.toString(i));
-			//System.out.println(studentCheck.getStudentId());
-			
-			System.out.println(studentCheck.getSemestersByYearAndSemester().size());
-			totalSemester = studentCheck.getSemestersByYearAndSemester().size();
+			for(String stringLine: totalSem.keySet()) {
+				seqOfSem = totalSem.get(stringLine);
+				totalCourse = studentKey.getNumCourseInNthSementer(seqOfSem);
+				count++;
+				//numOfCoursesTakenInEachSemester.add(lineString + "     " + totalSem.size() + "                              " + seqOfSem + "       " + totalCourse);
+				numOfCoursesTakenInEachSemester.add(lineString + "," + totalSem.size() + "," + seqOfSem + ","+ totalCourse);
+				//numOfCoursesTakenInEachSemester.add(lineString + "\t" + totalSem.size() + "\t" + seqOfSem + "\t" + totalCourse);
+				System.out.println(lineString + " " + totalSem.size() + " " + seqOfSem + " " + totalCourse);
+			}
 		}
 		
-		for(int i = 1; i < sortedStudents.size(); i++) {
+		return numOfCoursesTakenInEachSemester;
+		//System.out.println(sortedStudents.toString());
+		
+		
+		
+		/*for(int i = 1; i < sortedStudents.size(); i++) {
 			Student studentCheck = sortedStudents.get(Integer.toString(i)); //for print studentID
-			String studentId = studentCheck.getStudentId();
-			System.out.println(studentId);
+			String studentId = studentCheck.getStudent();
+			//System.out.println(studentId);
 			totalSemester = studentCheck.getSemestersByYearAndSemester().size(); //
+			//System.out.println(totalSemester);
 			
 			for(int j = 1; j < studentCheck.getSemestersByYearAndSemester().size(); j++) {
 				int numOfCoursesInNthSemester = studentCheck.getNumCourseInNthSementer(j);
 				String lineResult = studentId + "," + totalSemester + "," + j + "," + numOfCoursesInNthSemester;
+				numberOfCoursesTakenInEachSemester.add(lineResult);
 			}
-		}*/
+		}
 		
-		return numberOfCoursesTakenInEachSemester; // do not forget to return a proper variable.
+		return numberOfCoursesTakenInEachSemester; // do not forget to return a proper variable.*/
 	}
 }
