@@ -14,6 +14,7 @@ public class Student { //학생객체로 학생이름이 아닌 학번으로 처
 	public Student(String studentId) {
 		this.studentId = studentId;
 		this.coursesTaken = new ArrayList<Course>();
+		//coursesTaken = new ArrayList<Course>();
 		this.semestersByYearAndSemester = new HashMap<String, Integer>();
 	}
 	
@@ -21,7 +22,7 @@ public class Student { //학생객체로 학생이름이 아닌 학번으로 처
 	 * Student instance에 있는 coursesTaken ArrayList에 추가하는 method*/
 	public void addCourse(Course newRecord) {
 		//coursesTaken.add(newRecord.getCourseName());
-		coursesTaken.add(newRecord);
+		this.coursesTaken.add(newRecord);
 		/*int count = 0;
 		for(count=0; count < newRecord.getCourseName().length(); count++) {
 			//coursesTaken = new ArrayList<Course>();

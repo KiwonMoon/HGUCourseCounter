@@ -2,6 +2,8 @@ package edu.handong.analysis.datamodel;
 
 import java.util.ArrayList;
 
+import org.apache.commons.csv.CSVRecord;
+
 public class Course {
 	private String studentId;
 	private String yearMonthGraduated;
@@ -48,6 +50,26 @@ public class Course {
 	public String toString() {
 		// TODO Auto-generated method stub
 		return super.toString();
+	}
+	
+	public String getYearMonthGraduated() {
+		return yearMonthGraduated;
+	}
+	
+	public String getFirstMajor() {
+		return firstMajor;
+	}
+	
+	public String getSecondMajor() {
+		return secondMajor;
+	}
+	
+	public String getCourseCode() {
+		return courseCode;
+	}
+	
+	public String getCourseCredit() {
+		return courseCredit;
 	}
 
 	public int getYearTaken() {
