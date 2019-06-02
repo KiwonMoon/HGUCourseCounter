@@ -19,8 +19,19 @@ public class Course {
 	//The method split(String) is undefined for the type ArrayList<String>
 	/* constructor에서 line을 받아 split해서 field초기화*/
 	public Course(String line) {
-		//Course courses = new Course(line);
-		ArrayList<String> lines = new ArrayList<String>();
+		this.studentId = line.split(",")[0].trim();
+		this.yearMonthGraduated = line.split(",")[1].trim();
+		this.firstMajor = line.split(",")[2].trim();
+		this.secondMajor = line.split(",")[3].trim();
+		this.courseCode = line.split(",")[4].trim();
+		this.courseName = line.split(",")[5].trim();
+		this.courseCredit = line.split(",")[6].trim();
+		this.yearTaken = Integer.parseInt(line.split(",")[7].trim());
+		this.semesterCourseTaken = Integer.parseInt(line.split(",")[8].trim());
+		
+		
+		
+		/*ArrayList<String> lines = new ArrayList<String>();
 		lines.add(0, line);
 		
 		for(String lineOfCSV: lines) {
@@ -34,7 +45,7 @@ public class Course {
 			courseCredit = lineOfCSV.split(",")[6].trim();
 			yearTaken = Integer.parseInt(lineOfCSV.split(",")[7].trim());
 			semesterCourseTaken = Integer.parseInt(lineOfCSV.split(",")[8].trim());
-		}
+		}*/
 		
 		}
 	

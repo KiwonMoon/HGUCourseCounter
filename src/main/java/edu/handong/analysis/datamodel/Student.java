@@ -37,7 +37,7 @@ public class Student { //학생객체로 학생이름이 아닌 학번으로 처
 		return instance;
 	}
 	
-	public String getStudent() {
+	public String getStudentId() {
 		return studentId;
 	}
 	

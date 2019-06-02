@@ -9,13 +9,23 @@ import java.io.IOException;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;//
 import java.io.DataOutputStream;
+import java.io.PrintWriter;
+import java.io.Reader;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+
+import org.apache.commons.csv.CSVFormat;
+import org.apache.commons.csv.CSVParser;
+import org.apache.commons.csv.CSVRecord;
 
 public class Utils {
 
-	public static ArrayList<String> getLines(String file,boolean removeHeader) {
+	public static ArrayList<String> getLines(String file,boolean removeHeader) throws IOException {
 		
 		ArrayList<String> lines = new ArrayList<String>();
-		String thisLine="";
+		
+		
+		/*String thisLine="";
 		try {
 			BufferedReader br = new BufferedReader(new FileReader(file));
 			
@@ -28,7 +38,20 @@ public class Utils {
 		}
 		
 		if(removeHeader)
-			lines.remove(0);
+			lines.remove(0);*/
+		
+		try (
+				Reader reader = Files.newBufferedReader(Paths.get(file));
+				CSVParser csvParser = new CSVParser(reader, CSVFormat.DEFAULT);
+			){
+				int i=0;
+				for(CSVRecord csvRecord : csvParser) {
+					String line = csvRecord.get(0) + "," + csvRecord.get(1) + "," + csvRecord.get(2) + "," + csvRecord.get(3) + "," + csvRecord.get(4) + "," + csvRecord.get(5) + "," + csvRecord.get(6) + "," + csvRecord.get(7) + "," + csvRecord.get(8);
+					if(i!=0)
+						lines.add(line);
+					i++;
+				}
+			}
 		
 		return lines;
 	}
